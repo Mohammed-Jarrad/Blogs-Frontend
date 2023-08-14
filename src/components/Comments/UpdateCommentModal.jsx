@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import { updateComment } from "../../redux/apiCalls/commentApiCall"
-import { getSinglePost } from "../../redux/apiCalls/postApiCall"
 import Modal from "../Modal/Modal"
 
 export const UpdateCommentModal = ({ closeModal, comment }) => {

@@ -9,7 +9,7 @@ const Modal = ({ children, closeModal }) => {
 		return () => {
 			window.removeEventListener("keydown", handelESC)
 		}
-	}, [])
+	}, [closeModal])
 
 	function handleClickModal(e) {
 		closeModal()

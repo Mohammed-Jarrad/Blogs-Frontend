@@ -2,6 +2,7 @@ import { toast } from "react-toastify"
 import req from "../../utils/request"
 import { profileActions } from "../slices/profileSlice"
 import { authActions } from "../slices/authSlice"
+import { postActions } from "../slices/postSlice"
 
 // Get User Profile
 export function getUserProfile(userId) {
@@ -11,6 +12,7 @@ export function getUserProfile(userId) {
 			const { data } = await req.get(`api/users/profile/${userId}`)
 			dispatch(profileActions.setProfile(data))
 			dispatch(profileActions.setLoading(false))
+			dispatch(postActions.setPostsLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
@@ -117,16 +119,18 @@ export function getUsersCount() {
 export function getAllUsers() {
 	return async (dispatch, getState) => {
 		try {
+			dispatch(profileActions.setLoading(true))
 			const { data } = await req.get(`/api/users/profile`, {
 				headers: {
 					Authorization: "Bearer " + getState().auth.user.token,
 				},
 			})
-
 			dispatch(profileActions.setUsers(data))
+			dispatch(profileActions.setLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
+			dispatch(profileActions.setLoading(false))
 		}
 	}
 }

@@ -1,17 +1,19 @@
 import { toast } from "react-toastify"
 import req from "../../utils/request"
 import { postActions } from "../slices/postSlice"
-import { profileActions } from "../slices/profileSlice"
 
 // Fetch posts based on page number
 export function fetchPosts(pageNumber) {
 	return async dispatch => {
 		try {
+			dispatch(postActions.setPostsLoading(true))
 			const { data } = await req.get(`/api/posts/?pageNumber=${pageNumber}`)
 			dispatch(postActions.setPosts(data))
+			dispatch(postActions.setPostsLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
+			dispatch(postActions.setPostsLoading(false))
 		}
 	}
 }
@@ -33,11 +35,14 @@ export function fetchAllPosts() {
 export function fetchPostsByCategory(category) {
 	return async dispatch => {
 		try {
+			dispatch(postActions.setCategoryPostsLoading(true))
 			const { data } = await req.get(`/api/posts/?category=${category}`)
 			dispatch(postActions.setCategoryPosts(data))
+			dispatch(postActions.setCategoryPostsLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
+			dispatch(postActions.setCategoryPostsLoading(false))
 		}
 	}
 }
@@ -59,11 +64,14 @@ export function getPostsCounts() {
 export function getSinglePost(postId) {
 	return async dispatch => {
 		try {
+			dispatch(postActions.setPostLoading(true))
 			const { data } = await req.get(`/api/posts/${postId}`)
 			dispatch(postActions.setSinglePost(data))
+			dispatch(postActions.setPostLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
+			dispatch(postActions.setPostLoading(false))
 		}
 	}
 }

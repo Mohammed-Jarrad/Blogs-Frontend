@@ -10,7 +10,7 @@ const AdminComments = () => {
 
 	useEffect(() => {
 		dispatch(getAllComments())
-	}, [])
+	}, [dispatch])
 
 	// Handle Delete Comment
 	const handleDelete = commentId => {

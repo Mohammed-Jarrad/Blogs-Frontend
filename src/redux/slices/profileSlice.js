@@ -35,7 +35,6 @@ const profileSlice = createSlice({
 		setIsProfileDeleted(state, action) {
 			state.isProfileDeleted = action.payload
 		},
-		 
 	},
 })
 

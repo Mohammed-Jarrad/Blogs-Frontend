@@ -14,7 +14,7 @@ const AdminUsers = () => {
 
 	useEffect(() => {
 		dispatch(getAllUsers())
-	}, [])
+	}, [dispatch])
 
 	// Handle Delete User
 	const handleDelete = userId => {
@@ -44,11 +44,9 @@ const AdminUsers = () => {
 				style={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}
 			>
 				<GridLoader color="#36d7b7" size={30} />
-				<h3>Deleting User...</h3>
 			</div>
 		)
 	}
-
 	return (
 		<div className="admin-table-wrapper">
 			<h2>Users</h2>

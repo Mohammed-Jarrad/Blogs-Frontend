@@ -7,6 +7,7 @@ import CommentsList from "../../components/Comments/CommentsList"
 import Swal from "sweetalert2"
 import { UpdatePostModal } from "./UpdatePostModal"
 import { useDispatch, useSelector } from "react-redux"
+import { LoadingPlacholder } from "../../pages/CategoryPage/Category"
 import {
 	deletePost,
 	getSinglePost,
@@ -18,7 +19,7 @@ import LikesModal from "./LikesModal"
 const PostDetails = () => {
 	const { id } = useParams()
 
-	const { singlePost: post } = useSelector(s => s.post)
+	const { singlePost: post, postLoading } = useSelector(s => s.post)
 	const { user: currentUser } = useSelector(s => s.auth)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -33,7 +34,7 @@ const PostDetails = () => {
 
 	useEffect(() => {
 		dispatch(getSinglePost(id))
-	}, [id])
+	}, [dispatch, id])
 
 	//  Update Image Submit Handler
 	const updateImageSubmitHandler = e => {
@@ -63,6 +64,10 @@ const PostDetails = () => {
 				navigate("/posts")
 			}
 		})
+	}
+
+	if (postLoading) {
+		return <LoadingPlacholder newClass={"post-details-page container"} />
 	}
 
 	return (

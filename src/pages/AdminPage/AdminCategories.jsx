@@ -10,7 +10,7 @@ const AdminCategories = () => {
 
 	useEffect(() => {
 		dispatch(getAllCategories())
-	}, [])
+	}, [dispatch])
 
 	// Handle Delete Categories
 	const handleDelete = categoryId => {

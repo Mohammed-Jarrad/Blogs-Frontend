@@ -11,10 +11,10 @@ const AdminPosts = () => {
 
 	useEffect(() => {
 		dispatch(fetchAllPosts())
-	}, [])
+	}, [dispatch])
 
 	// Handle Delete Post
-	const handleDelete = (postId) => {
+	const handleDelete = postId => {
 		Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this Post!",

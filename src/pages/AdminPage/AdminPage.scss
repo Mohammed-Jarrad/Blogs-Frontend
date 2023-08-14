@@ -220,9 +220,6 @@
 		overflow-y: auto;
 		overflow-x: auto;
 
-		&.overflow {
-			overflow-x: auto;
-		}
 		table {
 			width: 100%;
 			border-collapse: collapse;
@@ -268,7 +265,7 @@
 						}
 					}
 					.actions {
-						min-width: 200px;
+						// min-width: 200px;
 						display: flex;
 						align-items: center;
 						justify-content: center;

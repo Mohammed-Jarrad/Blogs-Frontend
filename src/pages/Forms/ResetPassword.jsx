@@ -18,7 +18,7 @@ const ResetPassword = () => {
 	// check reset link validation
 	useEffect(() => {
 		dispatch(checkResestLink(userId, token))
-	}, [])
+	}, [dispatch, userId, token])
 
 	const submitHandler = e => {
 		e.preventDefault()

@@ -9,6 +9,9 @@ const postSlice = createSlice({
 		singlePost: {},
 		loading: false,
 		postIsCreated: false,
+		categoryPostsLoading: true,
+		postsLoading: true,
+		postLoading: true
 	},
 	reducers: {
 		setPosts(state, action) {
@@ -50,6 +53,15 @@ const postSlice = createSlice({
 		deleteComment(state, action) {
 			const commentId = action.payload
 			state.singlePost.comments = state.singlePost.comments.filter(c => c._id !== commentId)
+		},
+		setCategoryPostsLoading(state, action) {
+			state.categoryPostsLoading = action.payload
+		},
+		setPostsLoading(state, action) {
+			state.postsLoading = action.payload
+		},
+		setPostLoading(state, action) {
+			state.postLoading = action.payload
 		},
 	},
 })

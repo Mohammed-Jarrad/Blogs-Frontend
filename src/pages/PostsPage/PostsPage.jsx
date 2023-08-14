@@ -19,16 +19,16 @@ const PostsPage = () => {
 	useEffect(() => {
 		dispatch(fetchPosts(currentPage))
 		window.scrollTo({ top: 0, left: 0, behavior: "auto" })
-	}, [currentPage])
+	}, [currentPage, dispatch])
 
 	useEffect(() => {
 		dispatch(getPostsCounts())
-	}, [])
+	}, [dispatch])
 
 	return (
 		<>
 			<Pagination currentPage={currentPage} pages={pages} setCurrentPage={setCurrentPage} />
-			
+
 			<section className="posts-page container">
 				<PostsList posts={posts} />
 				<Categories />

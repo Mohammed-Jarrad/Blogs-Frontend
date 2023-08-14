@@ -16,7 +16,7 @@ export const UpdatePostModal = ({ closeModal, post }) => {
 
 	useEffect(() => {
 		dispatch(getAllCategories())
-	}, [])
+	}, [dispatch])
 
 	// form submit handler
 	const formSubmitHandler = e => {

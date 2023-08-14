@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./Form.scss"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { toast } from "react-toastify"
 import { useDispatch, useSelector } from "react-redux"
 import { registerUser } from "../../redux/apiCalls/authApiCall"
@@ -14,7 +14,6 @@ const Signup = () => {
 
 	const dispatch = useDispatch()
 	const { registerMessage } = useSelector(state => state.auth)
-	const navigate = useNavigate()
 
 	const register = e => {
 		e.preventDefault()

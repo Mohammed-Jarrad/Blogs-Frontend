@@ -20,7 +20,7 @@ const AdminMain = () => {
 		dispatch(getUsersCount())
 		dispatch(getPostsCounts())
 		dispatch(getCommentsCount())
-	}, [])
+	}, [dispatch])
 
 	return (
 		<div className="admin-main">

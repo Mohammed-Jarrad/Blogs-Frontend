@@ -23,7 +23,7 @@ const CreatePost = () => {
 
 	useEffect(() => {
 		dispatch(getAllCategories())
-	}, [])
+	}, [dispatch])
 
 	useEffect(() => {
 		if (postIsCreated) {

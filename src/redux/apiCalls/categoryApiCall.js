@@ -6,11 +6,14 @@ import { categoryActions } from "../slices/categorySlice"
 export function getAllCategories() {
 	return async dispatch => {
 		try {
+			dispatch(categoryActions.setCategoriesLoading(true))
 			const { data } = await req.get(`/api/categories`)
 			dispatch(categoryActions.setCategories(data))
+			dispatch(categoryActions.setCategoriesLoading(false))
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)
+			dispatch(categoryActions.setCategoriesLoading(false))
 		}
 	}
 }
