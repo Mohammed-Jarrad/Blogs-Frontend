@@ -1,0 +1,68 @@
+@import "../../index.scss";
+
+.craete-post {
+	@include pageDefaultDesign();
+	display: flex;
+	flex-direction: column;
+	gap: 90px;
+
+	h1 {
+		align-self: center;
+		color: var(--dark-blue-color);
+	}
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+
+		input,
+		textarea,
+		select {
+			display: block;
+			border: 1px solid var(--gray-color);
+			width: 50%;
+			padding: 10px 15px;
+			border-radius: 10px;
+			font-size: large;
+			&textarea {
+				resize: vertical;
+			}
+			&::placeholder {
+				color: var(--gray-color);
+			}
+			@include underLaptop {
+				width: 100%;
+			}
+		}
+		button {
+			width: 50%;
+			padding: 10px 15px;
+			border: none;
+			border-radius: 10px;
+			background-color: var(--red-color);
+			color: var(--white-color);
+			font-size: large;
+			cursor: pointer;
+			@include underLaptop {
+				width: 100%;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 200px;
+			border-radius: 10%;
+		}
+
+		@include mobile {
+			gap: 10px;
+			input,
+			textarea,
+			select,
+			button {
+				font-size: small;
+			}
+		}
+	}
+}

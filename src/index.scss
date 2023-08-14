@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+	--main-color: #efefef;
+	--primary-color: #1d2d3d;
+	--secondary-color: #495e74;
+	--gray-color: #778697;
+	--dark-color: #292b2c;
+	--blue-color: #0275d8;
+	--dark-blue-color: #37424c;
+	--green-color: #27ae60;
+	--green-sea-color: #16a085;
+	--pumpkin-color: #d25d59;
+	--red-color: #d25d59;
+	--white-color: #fff;
+	--header-height: 50px;
+	--welcome-height: 400px;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	// font-family: 'Roboto Mono', monospace;
+	font-family: "Source Code Pro Regular", monospace;
+}
+
+body {
+	background-color: var(--main-color);
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+	cursor: pointer;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+input {
+	outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+}
+
+/* Some Global Classes For icons */
+.bi-pencil-square {
+	color: var(--green-sea-color);
+	margin-right: 15px;
+}
+
+.bi-trash-fill {
+	color: var(--red-color);
+}
+
+/* Scrollbar Classes For Google Chrome */
+html::-webkit-scrollbar {
+	width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+	background-color: rgb(187, 179, 179);
+}
+
+html::-webkit-scrollbar-thumb {
+	background-color: var(--dark-blue-color);
+}
+
+// Media Queries
+@mixin mobile {
+	@media (max-width: 650px) {
+		@content;
+	}
+}
+@mixin tablet {
+	@media (min-width: 651px) and (max-width: 991px) {
+		@content;
+	}
+}
+@mixin laptop {
+	@media (min-width: 992px) and (max-width: 1199px) {
+		@content;
+	}
+}
+@mixin large {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin underTablet {
+	@media (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin underLaptop {
+	@media (max-width: 992px) {
+		@content;
+	}
+}
+
+// CONTAINER
+
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	@media (max-width: 767px) {
+		width: 95%;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	@media (min-width: 768px) and (max-width: 991px) {
+		width: 750px;
+	}
+	@include laptop {
+		width: 970px;
+	}
+	@include large {
+		width: 1170px;
+	}
+}
+
+// MIXINS
+
+@mixin pageDefaultDesign() {
+	background-color: var(--white-color);
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+	-moz-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+	box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+	min-height: calc(100vh - (var(--header-height) * 2) - 40px);
+}
+
+// Update Modal Styles
+
+.update-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0, 0.6);
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	> h2 {
+		color: var(--gray-color);
+	}
+	// form {
+	// 	width: 800px;
+	// 	max-width: 95%;
+	// 	background-color: var(--white-color);
+	// 	padding: 15px;
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: flex-start;
+	// 	position: relative;
+	// 	border-radius: 10px;
+
+	// 	.close {
+	// 		position: absolute;
+	// 		top: 5px;
+	// 		right: 8px;
+	// 		color: var(--red-color);
+	// 		cursor: pointer;
+	// 		font-size: 30px;
+	// 	}
+
+	// 	> h1 {
+	// 		margin-bottom: 30px;
+	// 		border-bottom: 1px solid;
+	// 		width: 100%;
+	// 		text-align: center;
+	// 		padding-bottom: 5px;
+	// 		color: var(--green-sea-color);
+	// 	}
+
+	// 	label {
+	// 		width: 100%;
+	// 		margin-bottom: 15px;
+	// 		display: flex;
+	// 		align-items: flex-start;
+	// 		gap: 10px;
+	// 		@include mobile {
+	// 			flex-direction: column;
+	// 		}
+	// 		span {
+	// 			height: 100%;
+	// 			display: flex;
+	// 			align-items: center;
+	// 			min-width: 200px;
+	// 			font-weight: bold;
+	// 			border-left: 4px solid var(--red-color);
+	// 			padding-left: 3px;
+	// 		}
+	// 		input,
+	// 		textarea,
+	// 		select {
+	// 			padding: 8px 5px;
+	// 			border-radius: 5px;
+	// 			border: 1px solid var(--gray-color);
+	// 			resize: none;
+	// 			&:focus {
+	// 				padding-left: 3px;
+	// 				transition: all 0.3s;
+	// 				border-color: var(--red-color);
+	// 			}
+	// 			flex: 1;
+	// 		}
+	// 	}
+	// 	button {
+	// 		width: 100%;
+	// 		margin-top: 30px;
+	// 		background-color: var(--green-sea-color);
+	// 		color: var(--white-color);
+	// 		padding: 5px 10px;
+	// 		border-radius: 5px;
+	// 		font-size: large;
+	// 	}
+	// }
+}

@@ -1,0 +1,148 @@
+@import "../../index.scss";
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0, 0.6);
+	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	> h2 {
+		color: var(--gray-color);
+	}
+
+	.modal-wrapper {
+		width: 700px;
+		max-width: 95%;
+		background-color: var(--white-color);
+		padding: 40px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
+		border-radius: 10px;
+		.close {
+			position: absolute;
+			top: 5px;
+			right: 8px;
+			color: var(--red-color);
+			cursor: pointer;
+			font-size: 25px;
+		}
+	}
+}
+
+.modal .likes-wrapper {
+	width: 100%;
+	padding-top: 20px;
+	background-color: var(--main-color);
+	box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 8);
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.like {
+		display: flex;
+		align-items: center;
+		> span {
+			background-color: var(--red-color);
+			color: var(--white-color);
+			width: 20px;
+			height: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+		}
+		img {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-left: 10px;
+			margin-right: 5px;
+		}
+		> p {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			a {
+				margin-right: 5px;
+                &:hover {
+                    color: var(--blue-color);
+                }
+			}
+			i {
+				color: var(--blue-color);
+			}
+		}
+	}
+}
+
+.modal form {
+	width: 100%;
+	> h1 {
+		margin-bottom: 30px;
+		border-bottom: 1px solid;
+		width: 100%;
+		text-align: center;
+		padding-bottom: 5px;
+		color: var(--green-sea-color);
+	}
+
+	label {
+		width: 100%;
+		margin-bottom: 15px;
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		@include mobile {
+			flex-direction: column;
+			span,
+			input,
+			textarea,
+			select {
+				width: 100%;
+			}
+		}
+		span {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			min-width: 200px;
+			font-weight: bold;
+			border-left: 4px solid var(--red-color);
+			padding-left: 3px;
+		}
+		input,
+		textarea,
+		select {
+			padding: 8px 5px;
+			border-radius: 5px;
+			border: 1px solid var(--gray-color);
+			resize: none;
+			&:focus {
+				padding-left: 3px;
+				transition: all 0.3s;
+				border-color: var(--red-color);
+			}
+			flex: 1;
+		}
+	}
+	button {
+		width: 100%;
+		margin-top: 30px;
+		background-color: var(--green-sea-color);
+		color: var(--white-color);
+		padding: 5px 10px;
+		border-radius: 5px;
+		font-size: large;
+	}
+}

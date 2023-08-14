@@ -1,0 +1,19 @@
+@import "../../index.scss";
+
+.category-page {
+	@include pageDefaultDesign();
+
+	h1 {
+		margin-bottom: 30px;
+		color: var(--primary-color);
+		border-left: 5px solid var(--red-color);
+		padding-left: 7px;
+	}
+
+	.posts-list-wrapper {
+		img {
+			max-width: 100%;
+			max-height: 300px;
+		}
+	}
+}

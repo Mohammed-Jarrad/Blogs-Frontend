@@ -1,0 +1,26 @@
+@import "../../index.scss";
+.verify-email {
+	@include pageDefaultDesign();
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+	i {
+		font-size: 80px;
+		color: var(--green-color);
+	}
+	.title {
+		color: var(--green-color);
+	}
+	a {
+		background-color: var(--red-color);
+		color: var(--white-color);
+		padding: 10px;
+		border-radius: 10px;
+	}
+	.not-found {
+		color: var(--red-color);
+		font-size: 40px;
+	}
+}

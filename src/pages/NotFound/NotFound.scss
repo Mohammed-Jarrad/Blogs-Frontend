@@ -1,0 +1,23 @@
+@import "../../index.scss";
+
+.not-found-page {
+	@include pageDefaultDesign();
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	h1 {
+		margin-bottom: 20px;
+		&:first-child {
+            color: var(--red-color);
+			font-size: 70px;
+		}
+	}
+
+	a {
+		background-color: var(--dark-blue-color);
+		color: var(--white-color);
+		padding: 20px;
+		border-radius: 5px;
+	}
+}

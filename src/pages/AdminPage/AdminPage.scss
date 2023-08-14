@@ -1,0 +1,306 @@
+@import "../../index.scss";
+
+.admin-dashboard {
+	min-height: calc(100vh - (var(--header-height) * 2));
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+	gap: 20px;
+	padding: 20px;
+	position: relative;
+	.settings {
+		display: none;
+	}
+	.overlay {
+		display: none;
+	}
+	@include mobile {
+		.settings {
+			display: block;
+			position: absolute;
+			width: 40px;
+			height: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			right: 3px;
+			top: 3px;
+			z-index: 20;
+			border: 1px solid var(--red-color);
+			border-radius: 50%;
+			cursor: pointer;
+			background-color: var(--main-color);
+		}
+		.overlay {
+			&.active {
+				display: block;
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgb(0, 0, 0, 0.5);
+			}
+		}
+	}
+	.admin-sidebar {
+		height: calc(100vh - (var(--header-height) * 2) - 40px);
+		padding: 10px;
+		background-color: var(--white-color);
+		box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+		border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		transition: all 0.3s;
+		position: sticky;
+		top: calc(var(--header-height) + 20px);
+
+		.main-link {
+			font-weight: bold;
+			font-size: 22px;
+			border-bottom: 2px solid var(--dark-blue-color);
+			width: fit-content;
+		}
+		ul.admin-list {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+		}
+		a {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 18px;
+			color: var(--primary-color);
+			i {
+				font-size: 25px;
+			}
+			&.active {
+				i {
+					color: var(--red-color);
+				}
+			}
+		}
+		@include tablet() {
+			flex: none;
+			padding: 10px;
+			a {
+				span {
+					display: none;
+				}
+			}
+		}
+		@include mobile {
+			position: absolute;
+			left: 10px;
+			top: 10px;
+			height: calc(100vh - var(--header-height) - 20px);
+			z-index: 10;
+			clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+			&.show {
+				clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+			}
+		}
+	}
+
+	.outlet {
+		width: 100%;
+		padding: 20px;
+		background-color: var(--white-color);
+		-webkit-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+		-moz-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+		box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 0.28);
+		border-radius: 10px;
+	}
+}
+
+.admin-main {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	.admin-main-header {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+
+		@include mobile {
+			grid-template-columns: repeat(1, 1fr);
+		}
+
+		.card {
+			background-color: var(--main-color);
+			-webkit-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			-moz-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			padding: 10px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			h2 {
+				color: var(--primary-color);
+			}
+			.icons {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 10px;
+				a {
+					background-color: var(--green-sea-color);
+					color: var(--white-color);
+					padding: 3px 6px;
+					border-radius: 5px;
+				}
+				i {
+					font-size: 25px;
+					color: var(--red-color);
+				}
+			}
+		}
+	}
+
+	.add-category-form {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		form {
+			background-color: var(--main-color);
+			-webkit-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			-moz-box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			box-shadow: 0px 1px 11px -6px rgba(0, 0, 0, 1);
+			padding: 10px;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			width: 80%;
+			label {
+				display: flex;
+				flex-direction: column;
+				gap: 5px;
+				span {
+					font-size: small;
+				}
+				input {
+					padding: 5px 10px;
+				}
+			}
+			button {
+				background-color: var(--green-color);
+				color: var(--white-color);
+				padding: 8px 0;
+				border-radius: 5px;
+				font-size: large;
+			}
+		}
+	}
+}
+
+.admin-table-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	h2 {
+		color: var(--white-color);
+		clip-path: polygon(0 20%, 75% 20%, 100% 50%, 74% 70%, 0 70%);
+		background-color: var(--red-color);
+		width: fit-content;
+		padding: 20px 30px 30px 10px;
+	}
+
+	.table-wrapper {
+		width: 100%;
+		height: 60vh;
+		overflow-y: auto;
+		overflow-x: auto;
+
+		&.overflow {
+			overflow-x: auto;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+
+			tr {
+				&:nth-child(even) {
+					background-color: #f2f2f2;
+				}
+				&:hover {
+					background-color: #ddd;
+				}
+				td,
+				th {
+					border: 1px solid #ddd;
+					padding: 8px;
+				}
+				th {
+					text-align: left;
+					background-color: var(--dark-color);
+					color: var(--white-color);
+					padding-top: 12px;
+					padding-bottom: 12px;
+				}
+				td {
+					.count {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+					.category-title {
+						min-width: 200px;
+					}
+					.user {
+						min-width: 200px;
+						display: flex;
+						align-items: center;
+						gap: 5px;
+						img {
+							width: 30px;
+							height: 30px;
+							border-radius: 50%;
+							object-fit: cover;
+						}
+					}
+					.actions {
+						min-width: 200px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						gap: 5px;
+						a {
+							background-color: var(--green-sea-color);
+							color: var(--white-color);
+							padding: 3px;
+							border-radius: 5px;
+						}
+						button {
+							background-color: var(--red-color);
+							color: var(--white-color);
+							padding: 3px;
+							border-radius: 5px;
+						}
+					}
+				}
+			}
+		}
+		&::-webkit-scrollbar {
+			width: 7px;
+			height: 7px;
+			border-radius: 10px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: rgb(187, 179, 179);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: var(--dark-color);
+		}
+	}
+}

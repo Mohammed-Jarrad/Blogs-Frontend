@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.posts-page {
+	@include pageDefaultDesign();
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+
+	.posts-list-wrapper {
+		flex: 3;
+	}
+	.categories-wrapper {
+		flex: 1;
+		position: sticky;
+		top: calc(var(--header-height) + 10px);
+	}
+}
+
+// Media Queries
+
+@include mobile {
+	.posts-page {
+		flex-direction: column;
+	}
+}
