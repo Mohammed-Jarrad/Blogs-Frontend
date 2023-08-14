@@ -39,10 +39,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={user ? <Navigate to={"/"} /> : <Login />} />
 					<Route path="/signup" element={user ? <Navigate to={"/"} /> : <Signup />} />
-					<Route
-						path="/verify/:token"
-						element={user ? <Navigate to={"/"} /> : <VerifyEmail />}
-					/>
+					<Route path="/verify/:token" element={user ? <Navigate to={"/"} /> : <VerifyEmail />} />
 					<Route
 						path="/forget-password"
 						element={user ? <Navigate to={"/"} /> : <ForgetPassword />}
