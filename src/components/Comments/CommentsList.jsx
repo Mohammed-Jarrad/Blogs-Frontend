@@ -2,7 +2,7 @@ import "./CommentsList.scss"
 import React, { useState } from "react"
 import { UpdateCommentModal } from "./UpdateCommentModal"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteComment  } from "../../redux/apiCalls/commentApiCall"
+import { deleteComment } from "../../redux/apiCalls/commentApiCall"
 import Swal from "sweetalert2"
 import Moment from "react-moment"
 
