@@ -13,6 +13,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom"
 import { logoutUser } from "../../redux/apiCalls/authApiCall"
 import { GridLoader } from "react-spinners"
+import Resizer from "react-image-file-resizer"
 
 const Profile = () => {
 	const dispatch = useDispatch()
@@ -34,6 +35,47 @@ const Profile = () => {
 			navigate("/login")
 		}
 	}, [isProfileDeleted, navigate])
+
+	const resizeFile = async file => {
+		let resized = null
+		Resizer.imageFileResizer(
+			file,
+			1000, // max width
+			1000, // max height
+			"JPEG", // compress format
+			100, // quality
+			0, // rotation
+			uri => {
+				resized = uri
+			},
+			"base64", // output type
+		)
+
+		// Waiting until the resized variable is set
+		while (!resized) {
+			await new Promise(resolve => setTimeout(resolve, 100))
+		}
+
+		return resized
+	}
+
+	const handleChangeImage = async e => {
+		const selectedFile = e.target.files[0]
+		const resizedImage = await resizeFile(selectedFile)
+
+		if (resizedImage) {
+			// Convert base64 image to file object
+			const byteCharacters = atob(resizedImage.split(",")[1])
+			const byteNumbers = new Array(byteCharacters.length)
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i)
+			}
+			const byteArray = new Uint8Array(byteNumbers)
+			const imageFile = new Blob([byteArray], { type: "image/jpeg" })
+
+			setFile(imageFile)
+		}
+	}
 
 	// Handle Image Upload
 	const handleImageUpload = e => {
@@ -88,12 +130,7 @@ const Profile = () => {
 										<i className="bi bi-camera-fill"></i>
 									</label>
 
-									<input
-										onChange={e => setFile(e.target.files[0])}
-										type="file"
-										name="file"
-										id="file"
-									/>
+									<input onChange={e => handleChangeImage(e)} type="file" name="file" id="file" />
 									<button type="submit">Upload</button>
 								</form>
 							)}

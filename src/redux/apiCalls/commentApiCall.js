@@ -48,11 +48,11 @@ export function deleteComment(commentId) {
 					Authorization: "Bearer " + getState().auth.user.token,
 				},
 			})
-			toast.success(data.message)
 			// update single post
 			dispatch(postActions.deleteComment(data.commentId))
 			// update commetns array
 			dispatch(commentActions.deleteComment(data.commentId))
+			toast.success(data.message)
 		} catch (error) {
 			const { message } = error.response.data
 			toast.warning(message)

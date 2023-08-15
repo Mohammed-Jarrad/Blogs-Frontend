@@ -7,6 +7,7 @@ import { createPost } from "../../redux/apiCalls/postApiCall"
 import { useNavigate } from "react-router-dom"
 import { postActions } from "../../redux/slices/postSlice"
 import { PropagateLoader } from "react-spinners"
+import Resizer from "react-image-file-resizer"
 
 const CreatePost = () => {
 	const { loading } = useSelector(s => s.post)
@@ -20,6 +21,47 @@ const CreatePost = () => {
 	const [description, setDescription] = useState("")
 	const [category, setCategory] = useState("")
 	const [file, setFile] = useState(null)
+
+	const resizeFile = async file => {
+		let resized = null
+		Resizer.imageFileResizer(
+			file,
+			1000, // max width
+			1000, // max height
+			"JPEG", // compress format
+			100, // quality
+			0, // rotation
+			uri => {
+				resized = uri
+			},
+			"base64", // output type
+		)
+
+		// Waiting until the resized variable is set
+		while (!resized) {
+			await new Promise(resolve => setTimeout(resolve, 100))
+		}
+
+		return resized
+	}
+
+	const handleChangeImage = async e => {
+		const selectedFile = e.target.files[0]
+		const resizedImage = await resizeFile(selectedFile)
+
+		if (resizedImage) {
+			// Convert base64 image to file object
+			const byteCharacters = atob(resizedImage.split(",")[1])
+			const byteNumbers = new Array(byteCharacters.length)
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i)
+			}
+			const byteArray = new Uint8Array(byteNumbers)
+			const imageFile = new Blob([byteArray], { type: "image/jpeg" })
+
+			setFile(imageFile)
+		}
+	}
 
 	useEffect(() => {
 		dispatch(getAllCategories())
@@ -83,7 +125,7 @@ const CreatePost = () => {
 				<input
 					type="file"
 					onChange={e => {
-						setFile(e.target.files[0])
+						handleChangeImage(e)
 					}}
 				/>
 
